@@ -8,9 +8,15 @@
     <title>@yield('title')</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="/adminLTE/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/adminLTE/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/adminLTE/css/adminlte.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    {{-- <link href="/adminLTE/css/bootstrap4-datatables.min.css" rel="stylesheet"> --}}
+
+    <link href="{{ asset('plugins/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([

@@ -12,9 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('/employee', 'EmployeeController', ['except' => ['create','edit','show','destroy']]);
+Route::post('/employee/destroy', 'EmployeeController@destroy')->name('employee.destroy');
