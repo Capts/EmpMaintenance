@@ -5,8 +5,11 @@
 <h2>Getting this repo:</h2>
 <code>git clone https://github.com/Capts/empmaintenance.git </code>
 <br>
+<h2>Database:</h2>
+<p>Create an empty database</p>
+<br>
 <h2>Setup:</h2>
-<h4>Edit <code>env.example</code> to <code>.env</code></h4>
+<h5>Edit <code>env.example</code> to <code>.env</code> and change your database credentials</h5>
 <code>composer install</code><br>
 <code>php artisan key:generate</code><br>
 
