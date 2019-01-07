@@ -6,6 +6,7 @@
 <code>git clone https://github.com/Capts/empmaintenance.git </code>
 <br>
 <h2>Setup:</h2>
+<h4>Edit <code>env.example</code> to <code>.env</code></h4>
 <code>composer install</code><br>
 <code>php artisan key:generate</code><br>
 
