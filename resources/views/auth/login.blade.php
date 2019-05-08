@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Login | EMS')
 @section('content')
 
 
@@ -38,7 +38,7 @@
 
             <div class="form-group">
                 <div class="col-md-12">
-                <a href="/register" class="p-2"> Create an account</a>
+                {{-- <a href="/register" class="p-2"> Create an account</a> --}}
                     <button type="submit" class="btn btn-primary float-right">
                         Login
                     </button>

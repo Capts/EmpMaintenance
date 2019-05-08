@@ -21,7 +21,7 @@ class CreateEmployeesTable extends Migration
             $table->string('mobile');
             $table->text('address');
             $table->text('position');
-            $table->string('base_sal');
+            $table->double('base_sal');
             $table->timestamps();
         });
     }
