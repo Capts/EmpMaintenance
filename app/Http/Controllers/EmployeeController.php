@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Employee;
+use Yajra\Datatables\Datatables;
 
 class EmployeeController extends Controller
 {
@@ -15,25 +16,27 @@ class EmployeeController extends Controller
     }
     public function index()
     {
-        $employees = Employee::all();
-        return view('employee.index')->withEmployees($employees);
+       
+        return view('employee.index');
     }
+
+    public function dt_ajax()
+    {
+        $employees = Employee::select(['id','firstname','lastname','email', 'mobile', 'address', 'position','base_sal'])
+            ->take(10)->get();
+
+        return Datatables::of($employees)
+            ->editColumn('action', function($data){
+                return "<button class='btn btn-info btn-sm'>show</button>";
+            })
+            ->make(true);
+            // ->editColumn('purchase_name', function($data){
+            //     return ucfirst($data->purchase_name);
+            // })
+    }
+
     public function store(Request $request)
     {
-        // commented this for purpose
-        // $rules = [
-        //     'firstname' => 'required|alpha',
-        //     'lastname' => 'required|alpha',
-        //     'email' => 'required|unique:employees',
-        //     'mobile' => 'required|',
-        //     'address' => 'required',
-        //     'position' => 'required', 
-        //     'base_sal' => 'required' 
-        // ];
-        // $validator = Validator::make (Input::all(),$rules);
-        // if ($validator->fails())
-        //     return json_encode(['error' => 'Invalid inputs'], 400);
-        // else {
             $emp = new Employee;
             $emp->firstname = $request->firstname;
             $emp->lastname = $request->lastname;
@@ -43,8 +46,7 @@ class EmployeeController extends Controller
             $emp->position = $request->position;
             $emp->base_sal = $request->base_sal;
             $emp->save();
-            return json_encode($emp);
-        // }
+            return redirect()->back();
     }
     public function update(Request $request, $id)
     {

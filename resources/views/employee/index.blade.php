@@ -2,7 +2,7 @@
 @section('title', 'Employees')
 
 @section('content')
-<div class="content p-5">
+<div class="content pt-3">
   <div class="card">
     @include('employee.modal.crud_modal')
     <div class="card-header">
@@ -11,44 +11,55 @@
     </div>
     <!-- /.card-header -->
       <div class="card-body">
-        <table id="example1" class="table table-bordered table-striped responsive ">
-          <thead>
-          <tr>
-            {{-- <th class="">id</th> --}}
-            <th>name</th>
-            <th>email</th>
-            <th>mobile</th>
-            <th>address</th>
-            <th>position</th>
-            <th>basic pay</th>
-            <th>action</th>
-          </tr>
-          </thead>
-          <tbody id="appendToThis">
-            @foreach ($employees as $emp)
-              <tr id="firstItem">
-                {{-- <td> {{ $emp->id }}</td> --}}
-                <td >{{ ucfirst($emp->firstname). ' '. ucfirst($emp->lastname) }}</td>
-                <td>{{ ucfirst($emp->email) }}</td>
-                <td>{{ ucfirst($emp->mobile) }}</td>
-                <td>{{ ucfirst(str_limit($emp->address,20, '...')) }}</td>
-                <td>{{ ucfirst($emp->position) }}</td>
-                <td>₱ {{ number_format($emp->base_sal) }}</td>
-                <td>
-                  <span>
-                    <button id="edit-modal" class="mr-2 btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#crudModal" data-info="{{$emp->id}},{{$emp->firstname}},{{$emp->lastname}},{{$emp->email}},{{$emp->mobile}},{{$emp->address}},{{$emp->position}},{{$emp->base_sal}}" data-id="{{$emp->id}}"><i class="fa fa-pencil"></i></button>
-                    <button id="delete" class="btn btn-sm btn-outline-danger"  data-id="{{$emp->id}}"><i class="fa fa-trash"></i></button>
-                  </span>
-                </td>
-              </tr>
-            @endforeach
-          
-          </tbody>
-          
-        </table>
+        <div class="table-responsive">
+          <table id="table-emp" class="table table-striped responsive responsive">
+            <thead>
+            <tr>
+              {{-- <th class="">id</th> --}}
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name </th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Address</th>
+              <th>Position</th>
+              <th>Basic pay</th>
+              <th>action</th>
+            </tr>
+            </thead>
+      
+          </table>
+        </div>
       </div>
     <!-- /.card-body -->
   </div>
 </div>
 
 @stop
+@push('scripts')
+<script>
+  $(document).ready(function() {
+    $('#table-emp').DataTable().destroy();
+    $('#table-emp').DataTable( {
+        processing: true,
+        searching: false,
+        serverSide: true,
+        paging: true,
+        order: [ 0, 'desc' ],
+        ajax: '/dtAjax',
+        columns: [
+            {data: 'id'},
+            {data: 'firstname'},
+            {data: 'lastname'},
+            {data: 'email'},
+            {data: 'mobile'},
+            {data: 'address'},
+            {data: 'position'},
+            {data: 'base_sal'},
+            {data: 'action'},
+        ],
+    });
+  });
+</script>
+
+@endpush

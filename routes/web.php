@@ -21,3 +21,4 @@ Auth::routes();
 
 Route::resource('/employee', 'EmployeeController', ['except' => ['create','edit','show','destroy']]);
 Route::post('/employee/destroy', 'EmployeeController@destroy')->name('employee.destroy');
+Route::get('/dtAjax', 'EmployeeController@dt_ajax');

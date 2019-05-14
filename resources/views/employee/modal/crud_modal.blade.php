@@ -44,7 +44,7 @@
              {!! Form::number('base_sal', null, ['id'=> 'basicpay', 'class' => 'form-control','step' => '0.1', 'required' => 'required', 'placeholder' => 'Basic Salary']) !!}
              <small class="text-danger">{{ $errors->first('base_sal') }}</small>
            </div>
-           {!! Form::submit("", ['class' => 'btn btn-outline-success float-right', 'id'=>"submit"]) !!}
+           {!! Form::submit("Submit", ['class' => 'btn btn-outline-success float-right', 'id'=>"submit"]) !!}
        {!! Form::close() !!}
       </div>
     </div>
